@@ -34,16 +34,7 @@
 </script>
 
 <style>
-    .item {
-        cursor: default;
-        height: var(--height, 42px);
-        line-height: var(--height, 42px);
-        padding: var(--itemPadding, 0 20px);
-        color: var(--itemColor, inherit);
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+   
 
     .groupHeader {
         text-transform: var(--groupTitleTextTransform, uppercase);
@@ -75,7 +66,7 @@
         color: var(--itemHoverColor, inherit);
     }
 </style>
-
-<div class="item {itemClasses}">
+ 
+<div class="item cursor-default h-11 pb-5 overflow-ellipsis whitespace-nowrap hover:text-gray-300  {itemClasses}">
     {@html getOptionLabel(item, filterText)}
 </div>

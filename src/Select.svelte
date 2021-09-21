@@ -677,74 +677,11 @@
 </script>
 
 <style>
-    .selectContainer {
-        --internalPadding: 0 16px;
-        border: var(--border, 1px solid #d8dbdf);
-        border-radius: var(--borderRadius, 3px);
-        box-sizing: border-box;
-        height: var(--height, 42px);
-        position: relative;
-        display: flex;
-        align-items: center;
-        padding: var(--padding, var(--internalPadding));
-        background: var(--background, #fff);
-        margin: var(--margin, 0);
-    }
 
-    .selectContainer input {
-        cursor: default;
-        border: none;
-        color: var(--inputColor, #3f4f5f);
-        height: var(--height, 42px);
-        line-height: var(--height, 42px);
-        padding: var(--inputPadding, var(--padding, var(--internalPadding)));
-        width: 100%;
-        background: transparent;
-        font-size: var(--inputFontSize, 14px);
-        letter-spacing: var(--inputLetterSpacing, -0.08px);
-        position: absolute;
-        left: var(--inputLeft, 0);
-        margin: var(--inputMargin, 0);
-    }
 
-    .selectContainer input::placeholder {
-        color: var(--placeholderColor, #78848f);
-        opacity: var(--placeholderOpacity, 1);
-    }
 
-    .selectContainer input:focus {
-        outline: none;
-    }
 
-    .selectContainer:hover {
-        border-color: var(--borderHoverColor, #b2b8bf);
-    }
-
-    .selectContainer.focused {
-        border-color: var(--borderFocusColor, #006fe8);
-    }
-
-    .selectContainer.disabled {
-        background: var(--disabledBackground, #ebedef);
-        border-color: var(--disabledBorderColor, #ebedef);
-        color: var(--disabledColor, #c1c6cc);
-    }
-
-    .selectContainer.disabled input::placeholder {
-        color: var(--disabledPlaceholderColor, #c1c6cc);
-        opacity: var(--disabledPlaceholderOpacity, 1);
-    }
-
-    .selectedItem {
-        line-height: var(--height, 42px);
-        height: var(--height, 42px);
-        overflow-x: hidden;
-        padding: var(--selectedItemPadding, 0 20px 0 0);
-    }
-
-    .selectedItem:focus {
-        outline: none;
-    }
+ 
 
     .clearSelect {
         position: absolute;
@@ -844,12 +781,12 @@
             on:multiItemClear={handleMultiItemClear}
             on:focus={handleFocus} />
     {/if}
-
+ 
     <input
         class:relative={isMulti}
         class:p-2={isMulti}
         class:m-2={isMulti}
-        
+        class="cursor-default border-0 text-blue-300 h-10 p-2 w-full bg-transparent text-sm space-x-1 absolute left-0 m-0"
         readOnly={!isSearchable}
         {..._inputAttributes}
         bind:this={input}
@@ -859,8 +796,9 @@
         style={inputStyles}
         disabled={isDisabled} />
 
+ 
     {#if !isMulti && showSelectedItem}
-        <div class="selectedItem" on:focus={handleFocus}>
+        <div class="selectedItem h-11 overflow-x-hidden pl-5" on:focus={handleFocus}>
             <svelte:component
                 this={Selection}
                 item={value}
@@ -930,6 +868,7 @@
 
     {#if !isMulti || (isMulti && !showMultiSelect)}
         <input
+            class="cursor-default border-0 text-blue-300 h-10 p-2 w-full bg-transparent text-sm space-x-1 absolute left-0 m-0"
             name={inputAttributes.name}
             type="hidden"
             value={value ? getSelectionLabel(value) : null} />
@@ -938,6 +877,7 @@
     {#if isMulti && showMultiSelect}
         {#each value as item}
             <input
+                class="cursor-default border-0 text-blue-300 h-10 p-2 w-full bg-transparent text-sm space-x-1 absolute left-0 m-0"
                 name={inputAttributes.name}
                 type="hidden"
                 value={item ? getSelectionLabel(item) : null} />

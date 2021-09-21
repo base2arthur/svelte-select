@@ -16,24 +16,8 @@
 </script>
 
 <style>
-    .multiSelectItem {
-        background: var(--multiItemBG, #ebedef);
-        margin: var(--multiItemMargin, 5px 5px 0 0);
-        border-radius: var(--multiItemBorderRadius, 16px);
-        height: var(--multiItemHeight, 32px);
-        line-height: var(--multiItemHeight, 32px);
-        display: flex;
-        cursor: default;
-        padding: var(--multiItemPadding, 0 10px 0 15px);
-        max-width: 100%;
-    }
-
-    .multiSelectItem_label {
-        margin: var(--multiLabelMargin, 0 5px 0 0);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+     
+   
 
     .multiSelectItem:hover,
     .multiSelectItem.active {
@@ -46,17 +30,7 @@
         color: var(--multiItemDisabledHoverColor, #c1c6cc);
     }
 
-    .multiSelectItem_clear {
-        border-radius: var(--multiClearRadius, 50%);
-        background: var(--multiClearBG, #52616f);
-        min-width: var(--multiClearWidth, 16px);
-        max-width: var(--multiClearWidth, 16px);
-        height: var(--multiClearHeight, 16px);
-        position: relative;
-        top: var(--multiClearTop, 8px);
-        text-align: var(--multiClearTextAlign, center);
-        padding: var(--multiClearPadding, 1px);
-    }
+  
 
     .multiSelectItem_clear:hover,
     .active .multiSelectItem_clear {
@@ -75,18 +49,14 @@
 </style>
 
 {#each value as item, i}
-    <div
-        class="multiSelectItem {activeValue === i ? 'active' : ''} {isDisabled
-            ? 'disabled'
-            : ''}"
-        on:click={(event) =>
-            multiFullItemClearable ? handleClear(i, event) : {}}>
-        <div class="multiSelectItem_label">
+ 
+    <div class="bg-blue-100 mt-1 ml-1 rounded h-8 flex cursor-default pt-3 pb-4 max-w-full {activeValue === i ? 'active' : ''} {isDisabled ? 'disabled' : ''}" on:click={(event) =>{multiFullItemClearable ? handleClear(i, event) : {}}}>
+        <div class="mt-1 overflow-hidden overflow-ellipsis whitespace-nowrap">
             {@html getSelectionLabel(item)}
         </div>
         {#if !isDisabled && !multiFullItemClearable}
             <div
-                class="multiSelectItem_clear"
+                class="multiSelectItem_clear rounded-2xl bg-blue-200 min-w-full max-w-full h-4 relative top-2 text-center p-1 "
                 on:click={(event) => handleClear(i, event)}>
                 <svg
                     width="100%"
