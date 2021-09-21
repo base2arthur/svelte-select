@@ -4,7 +4,7 @@ import css from 'rollup-plugin-css-only';
 import cleaner from 'rollup-plugin-cleaner';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
-
+const production = !process.env.ROLLUP_WATCH;
 const name = pkg.name
     .replace(/^(@\S+\/)?(svelte-)?(\S+)/, '$3')
     .replace(/^\w/, (m) => m.toUpperCase())
@@ -25,7 +25,7 @@ export default [
             svelte({
                 emitCss: false,
             }),
-            css(),
+            css({ output: 'bundle.css' }),
             terser(),
             resolve(),
         ],
@@ -44,7 +44,7 @@ export default [
                     dev: true,
                 },
             }),
-            css(),
+            css({ output: 'bundle.css' }),
             resolve(),
         ],
     },

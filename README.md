@@ -1,4 +1,5 @@
 # svelte-select
+This fork is designed to work with tailwind
 
 A select/autocomplete component for Svelte apps.  With support for grouping, filtering, async and more.
 

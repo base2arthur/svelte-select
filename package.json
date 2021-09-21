@@ -8,8 +8,10 @@
   "main": "dist/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -cw",
+    "watch:tailwind": "postcss public/tailwind.css -o public/index.css -w",
+    "build:tailwind": "NODE_ENV=production postcss public/tailwind.css -o public/index.css",
+    "build": "npm run build:tailwind rollup -c",
+    "dev": "rollup -cw watch:tailwind",
     "prepublishOnly": "npm run build",
     "test": "node test/runner.js",
     "test:browser": "npm run build && serve test/public",
@@ -27,6 +29,7 @@
     "rollup": "^2.41.2",
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-css-only": "^3.1.0",
+    "postcss-cli": "^8.3.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-serve": "1.1.0",
     "rollup-plugin-svelte": "^7.1.0",
@@ -35,7 +38,11 @@
     "svelte": "^3.38.3",
     "tap-diff": "^0.1.1",
     "tap-dot": "^2.0.0",
-    "tape-modern": "^1.1.1"
+    "tape-modern": "^1.1.1",
+    "tailwindcss": "^2.2.8"
+  },
+  "optionalDependencies": {
+    "win-node-env": "^0.4.0"
   },
   "author": "rob-balfre",
   "license": "LIL",

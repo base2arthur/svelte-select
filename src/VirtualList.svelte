@@ -122,35 +122,20 @@
         mounted = true;
     });
 </script>
+ 
 
-<style>
-    svelte-virtual-list-viewport {
-        position: relative;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        display: block;
-    }
-
-    svelte-virtual-list-contents,
-    svelte-virtual-list-row {
-        display: block;
-    }
-
-    svelte-virtual-list-row {
-        overflow: hidden;
-    }
-</style>
-
-<svelte-virtual-list-viewport
+<svelte-virtual-list-viewport 
+    class="relative overscroll-y-auto block"
     bind:this={viewport}
     bind:offsetHeight={viewport_height}
     on:scroll={handle_scroll}
     style="height: {height};">
     <svelte-virtual-list-contents
+        class="block"
         bind:this={contents}
         style="padding-top: {top}px; padding-bottom: {bottom}px;">
         {#each visible as row (row.index)}
-            <svelte-virtual-list-row>
+            <svelte-virtual-list-row class="block overflow-hidden">
                 <slot item={row.data} i={row.index} {hoverItemIndex}>Missing template</slot>
             </svelte-virtual-list-row>
         {/each}

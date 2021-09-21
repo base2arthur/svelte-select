@@ -764,22 +764,7 @@
         color: var(--clearSelectFocusColor, #3f4f5f);
     }
 
-    .indicator {
-        position: absolute;
-        right: var(--indicatorRight, 10px);
-        top: var(--indicatorTop, 11px);
-        width: var(--indicatorWidth, 20px);
-        height: var(--indicatorHeight, 20px);
-        color: var(--indicatorColor, #c5cacf);
-    }
-
-    .indicator svg {
-        display: inline-block;
-        fill: var(--indicatorFill, currentcolor);
-        line-height: 1;
-        stroke: var(--indicatorStroke, currentcolor);
-        stroke-width: 0;
-    }
+ 
 
     .spinner {
         position: absolute;
@@ -805,45 +790,7 @@
         -webkit-transform: none;
     }
 
-    .spinner_path {
-        stroke-dasharray: 90;
-        stroke-linecap: round;
-    }
-
-    .multiSelect {
-        display: flex;
-        padding: var(--multiSelectPadding, 0 35px 0 16px);
-        height: auto;
-        flex-wrap: wrap;
-        align-items: stretch;
-    }
-
-    .multiSelect > * {
-        flex: 1 1 50px;
-    }
-
-    .selectContainer.multiSelect input {
-        padding: var(--multiSelectInputPadding, 0);
-        position: relative;
-        margin: var(--multiSelectInputMargin, 0);
-    }
-
-    .hasError {
-        border: var(--errorBorder, 1px solid #ff2d55);
-        background: var(--errorBackground, #fff);
-    }
-
-    .a11yText {
-        z-index: 9999;
-        border: 0px;
-        clip: rect(1px, 1px, 1px, 1px);
-        height: 1px;
-        width: 1px;
-        position: absolute;
-        overflow: hidden;
-        padding: 0px;
-        white-space: nowrap;
-    }
+ 
 
     @keyframes rotate {
         100% {
@@ -858,9 +805,12 @@
     on:keydown={handleKeyDown} />
 
 <div
-    class="selectContainer {containerClasses}"
-    class:hasError
-    class:multiSelect={isMulti}
+ 
+
+    class="selectContainer {containerClasses} border box-border rounded h-11 relative flex align items-center p-2 bg-white m-2 "
+    class:border-1 ={hasError}
+    class:bg-red-300 ={hasError}
+    class:flex={isMulti}
     class:disabled={isDisabled}
     class:focused={isFocused}
     style={containerStyles}
@@ -870,7 +820,7 @@
         aria-live="polite"
         aria-atomic="false"
         aria-relevant="additions text"
-        class="a11yText">
+        class="z-50 border-0 h-1 w-1 absolute overflow-hidden p-0 whitespace-nowrap">
         {#if isFocused}
             <span id="aria-selection">{ariaSelection}</span>
             <span id="aria-context">
@@ -896,6 +846,10 @@
     {/if}
 
     <input
+        class:relative={isMulti}
+        class:p-2={isMulti}
+        class:m-2={isMulti}
+        
         readOnly={!isSearchable}
         {..._inputAttributes}
         bind:this={input}
@@ -922,13 +876,16 @@
             <svelte:component this={ClearIcon} />
         </div>
     {/if}
+ 
 
     {#if !showClearIcon && (showIndicator || (showChevron && !value) || (!isSearchable && !isDisabled && !isWaiting && ((showSelectedItem && !isClearable) || !showSelectedItem)))}
-        <div class="indicator" aria-hidden="true">
+        <div class="absolute right-3 top-3 w-5 h-20 text-blue-300" aria-hidden="true">
             {#if indicatorSvg}
                 {@html indicatorSvg}
             {:else}
+           
                 <svg
+                class="inline-block currentColor stroke-1"
                     width="100%"
                     height="100%"
                     viewBox="0 0 20 20"
@@ -949,7 +906,7 @@
         <div class="spinner">
             <svg class="spinner_icon" viewBox="25 25 50 50">
                 <circle
-                    class="spinner_path"
+                    class="stroke-1 border-dashed "
                     cx="50"
                     cy="50"
                     r="20"
